@@ -79,7 +79,7 @@ int  Already_Exis(char LineChecking[30],char informationType, char StudentRollNu
 void Delete_Subject_by_Index(int SubjectIndex);
 void Delete_Student_by_Index(int SubjectIndex);
 void GoBack_or_Exit();
-void ExitProject();
+void Exit_Project();
 void Sample_Data();
 
 int main()
@@ -97,7 +97,7 @@ int main()
         {
         case 0:
             IsRunning = false;
-            ExitProject();
+            Exit_Project();
             break;
         case 1:
             system("clear");
@@ -203,7 +203,7 @@ int main()
             system("clear");
             break;
         default:
-            ExitProject();
+            Exit_Project();
             break;
         }
     }
@@ -224,7 +224,7 @@ void Menu()
     printf("\t 7. Clear The window.\n");
     printf("\t 0. Exit the Program.\n");
     printf("\t========================\n");
-    printf("\tEnter a Choice form the above Selections : ");
+    printf("\tEnter a Choice from the above Selections : ");
 } 
 
 void Add_New_Student()
@@ -732,7 +732,7 @@ void GoBack_or_Exit()
     scanf("%c",&Option);
     if(Option == '0')
     {
-        ExitProject();
+        Exit_Project();
     }
     else
     {
@@ -740,7 +740,7 @@ void GoBack_or_Exit()
     }
 }
 
-void ExitProject()
+void Exit_Project()
 {
     system("clear");
     sleep(2);
