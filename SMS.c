@@ -322,11 +322,11 @@ void Add_New_Student()
     while(!IsValidPhone)
     {
         printf(" Enter The Phone: ");
-        scanf("%s",Phone);
+        scanf(" %[^\n]s",Phone);
 
         if(Already_Exist(Phone,'p',StudentRollNumber) > 0)
         {
-            printf(" This Phone Number is Already Exists\n");
+            printf(" This Phone Number Already Exists\n");
             IsValidPhone = 0;
         }
         else if(strlen(Phone) > 20)
@@ -351,9 +351,9 @@ void Add_New_Student()
         printf(" Number of Subjects: ");
         scanf("%d",&NumberOfSubjects);
 
-        if(NumberOfSubjects <= 0 || NumberOfSubjects > 4)
+        if(NumberOfSubjects <= 0 || NumberOfSubjects > 7)
         {
-            printf(" Error: Number of Subjects can not be more than 4 and lees than 1.\n\n");
+            printf(" Error: Number of Subjects can not be more than 7 or less than 1.\n\n");
             IsValidNumberOfSubject = 0;
         }
         else
@@ -372,10 +372,10 @@ void Add_New_Student()
     for(i = 0; i < NumberOfSubjects; i++)
     {
 
-        printf(" Enter Subject %d Code: ",i+1);
+        printf("\n Enter Subject (%d) Code: ",i+1);
         scanf("%s",SubjectCode);
 
-        printf(" Enter Subject %d Name: ",i+1);
+        printf(" Enter Subject (%d) Name: ",i+1);
         scanf(" %[^\n]s", SubjectName);
 
         strcpy(Subjects[TotalSubjects].StudentRollNumber,StudentRollNumber);
@@ -487,23 +487,23 @@ int Search_Student(char StudentRollNumber[12])
         {
             StudentFoundIndex = i;
             printf("\n Student with RollNumber '%s' Found \n\n",StudentRollNumber);
-            printf("+----------------------------------------+\n");
-            printf("|\t         STUDENT INFORMATION          |\n");
-            printf("+----------------------------------------+\n");
+            printf("+---------------------------------------------+\n");
+            printf("|           STUDENT INFORMATION               |\n");
+            printf("+---------------------------------------------+\n");
             printf("| Roll Number : %-30s|\n", Students[i].RollNumber);
             printf("| Name        : %-30s|\n", Students[i].Name);
             printf("| Email       : %-30s|\n", Students[i].Email);
             printf("| Phone       : %-30s|\n", Students[i].Phone);
-            printf("+--------------------------------------+\n");
+            printf("+---------------------------------------------+\n");
         }
     }   
 
     
 
-            printf("|\t               SUBJECTS               |\n");
-            printf("+-----------------------------------------+\n");
-            printf("|Count\t     CODE\t         SUBJECT      |\n");
-            printf("|-----------------------------------------|\n");
+            printf("|                 SUBJECTS                    |\n");
+            printf("+---------------------------------------------+\n");
+            printf("| Count          CODE            SUBJECT      |\n");
+            printf("|---------------------------------------------|\n");
 
     int SubjectCount = 0;
     for (int j = 0; j < TotalSubjects; j++)
@@ -511,10 +511,12 @@ int Search_Student(char StudentRollNumber[12])
         if (strcmp(StudentRollNumber, Subjects[j].StudentRollNumber) == 0)
         {
             SubjectCount++;
-            printf("| %-6d\t    %-8s     %-14s|\n", SubjectCount, Subjects[j].Code, Subjects[j].Name);
-            printf("|--------------------------------------|\n");
+            printf("|  %-5d         %-8s        %-13s|\n", SubjectCount, Subjects[j].Code, Subjects[j].Name);
+            printf("|---------------------------------------------|\n");
         }
     }
+
+    return StudentFoundIndex;
 }
 
 
