@@ -94,6 +94,8 @@ int main()
         Menu();
         int Option;
         scanf("%d",&Option);
+        
+
         switch(Option)
         {
         case 0:
@@ -102,13 +104,13 @@ int main()
             break;
         case 1:
             system("clear");
-            printf("\n\t\t **** Add A New Student ****\n\n");
+            printf("\n\t\t ___ ADD A New Student ___\n\n");
             Add_New_Student();
             GoBack_or_Exit();
             break;
         case 2:
             system("clear");
-            printf("\n\t\t **** All Students ****\n\n");
+            printf("\n\t\t ___ ALL STUDENTS ___\n\n");
             Show_All_Students();
             GoBack_or_Exit();
             break;
@@ -120,8 +122,7 @@ int main()
             scanf("%s",StudentRollNumber);
             int IsFound = Search_Student(StudentRollNumber);
             if(IsFound < 0)
-            {
-                
+            { 
                 printf(" No Student Found\n\n");
             }
             printf("\n");
@@ -130,7 +131,7 @@ int main()
         }
         case 4:
             system("clear");
-            printf("\n\t\t **** Edit a Student ****\n\n");
+            printf("\n\t\t ___ EDIT A STUDENT ___\n\n");
             printf(" Enter The Student RollNumber: ");
             scanf("%s",StudentRollNumber);
             int StudentFoundIndex = Search_Student(StudentRollNumber);
@@ -148,7 +149,7 @@ int main()
 
         case 5:
             system("clear");
-            printf("\n\t\t **** Delete a Student ****\n\n");
+            printf("\n\t\t ___ DELET A STUDENT ___\n\n");
             printf(" Enter The Student RollNumber: ");
             scanf("%s",StudentRollNumber);
 
@@ -186,7 +187,7 @@ int main()
             char Sure = 'N';
             getchar();
             system("clear");
-            printf("\n\t\t **** Delete ALL Students ****\n\n");
+            printf("\n\t\t ___ DELETE ALL Students ___\n\n");
 
             printf(" Are you sure want to delete all the students? (Y/N): ");
             scanf("%c",&Sure);
@@ -482,14 +483,9 @@ int Search_Student(char StudentRollNumber[12]) {
 }
 
 
-
-
-
-
-
 void Edit_Student(int StudentFoundIndex)
 {
-    printf("\n\t\t **** Update The New Student ****\n\n");
+    printf("\n\t\t ___ Update The New Student ****\n\n");
 
     char NewName[300];
     char NewPhone[300];
@@ -657,15 +653,15 @@ void Delete_Student(int IndexOfStudent)
     int FirstSubjectIndexs;
     struct StudentInfo currentStudent;
     currentStudent = Students[IndexOfStudent];
-    for(d=0; d<TotalSubjects; d++)
+    for(d = 0; d < TotalSubjects; d++)
     {
-        if(strcmp(currentStudent.RollNumber,Subjects[d].StudentRollNumber) == 0)
+        if(strcmp(currentStudent.RollNumber, Subjects[d].StudentRollNumber) == 0)
         {
             FirstSubjectIndexs = d;
             break;
         }
     }
-    for(d=1; d<=currentStudent.NumberOfSubject; d++)
+    for(d = 1; d <= currentStudent.NumberOfSubject; d++)
     {
         Delete_Subject_by_Index(FirstSubjectIndexs);
     }
