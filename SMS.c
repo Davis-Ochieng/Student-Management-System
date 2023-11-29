@@ -1,5 +1,5 @@
 /*
- 
+Database Concept : CURD ( Create, Update, Read, Delete )
 
 Student Information 
 
@@ -69,19 +69,26 @@ char StudentRollNumber[12];
 
 
 void Menu();
+
+//CREATE
 void Add_New_Student();
+//READ
 void Show_All_Students();
 int  Search_Student(char StudentRollNumber[12]);
-
+//UPDATE
 void Edit_Student(int StudentFoundIndex);
+//DELETE
 void Delete_Student(int IndexOfStudent);
 void Delete_All_Students();
-int  Already_Exist(char LineChecking[30],char informationType, char StudentRollNumber[300]);
 void Delete_Subject_by_Index(int SubjectIndex);
 void Delete_Student_by_Index(int SubjectIndex);
+
+//Other functions that aid in the CURD Concept
+int  Already_Exist(char LineChecking[30], char informationType, char StudentRollNumber[300]);
 void GoBack_or_Exit();
 void Exit_Project();
 void Sample_Data();
+
 
 int main()
 {
@@ -390,6 +397,7 @@ void Add_New_Student()
     printf("\n Student Added Successfully.\n\n");
 }
 
+
 void Show_All_Students()
 {
     printf("|=============|=====================|===============================|=====================|==============|\n");
@@ -438,6 +446,7 @@ void Show_All_Students()
     }
     printf("\n");
 }
+
 
 int Search_Student(char StudentRollNumber[12]) {
     int StudentFoundIndex = -1;
@@ -647,6 +656,8 @@ void Edit_Student(int StudentFoundIndex)
 
 }
 
+
+
 void Delete_Student(int IndexOfStudent)
 {
     int d;
@@ -669,6 +680,8 @@ void Delete_Student(int IndexOfStudent)
     printf(" Student Deleted Successfully.\n\n");
     GoBack_or_Exit();
 }
+
+
 
 void Delete_All_Students()
 {
