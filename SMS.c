@@ -115,12 +115,13 @@ int main()
         case 3:
         {
             system("clear");
-            printf("\n\t\t **** Search Students ****\n\n");
+            printf("\n\t\t  __ SEARCH STUDENTS __    \n\n");
             printf(" Enter The Student RollNumber: ");
             scanf("%s",StudentRollNumber);
             int IsFound = Search_Student(StudentRollNumber);
             if(IsFound < 0)
             {
+                
                 printf(" No Student Found\n\n");
             }
             printf("\n");
@@ -153,7 +154,7 @@ int main()
 
             int DeleteStudentFoundIndex = Search_Student(StudentRollNumber);
 
-            if(DeleteStudentFoundIndex>=0)
+            if(DeleteStudentFoundIndex >= 0)
             {
                 char Sure = 'N';
                 getchar();
@@ -437,56 +438,15 @@ void Show_All_Students()
     printf("\n");
 }
 
-/*
-int Search_Student(char StudentRollNumber[12])
-{
-    //system("clear");
+int Search_Student(char StudentRollNumber[12]) {
     int StudentFoundIndex = -1;
 
-
-    for(int i = 0; i < TotalNumberOfStudents; i++)
+    for (int i = 0; i < TotalNumberOfStudents; i++) 
     {
-        if(strcmp(StudentRollNumber,Students[i].RollNumber) == 0)
+        if (strcmp(StudentRollNumber, Students[i].RollNumber) == 0) 
         {
             StudentFoundIndex = i;
-            printf("\n One Student Found for RollNumber: %s\n\n",StudentRollNumber);
-            printf(" Student Informations\n");
-            printf("-------------------------\n");
-
-            printf(" RollNumber:    %s\n",Students[i].RollNumber);
-            printf(" Name:  %s\n",Students[i].Name);
-            printf(" Email: %s\n",Students[i].Email);
-            printf(" Phone: %s\n",Students[i].Phone);
-            printf("\n Total Number of Subjects: %d\n",Students[i].NumberOfSubject);
-        }
-    }
-    int SubjectCount = 0;
-    
-    for(int j = 0; j < TotalSubjects; j++)
-    {
-        if(strcmp(StudentRollNumber,Subjects[j].StudentRollNumber) == 0)
-        {
-            SubjectCount++;
-            printf(" Subject %d Code: %s\n",SubjectCount,Subjects[j].Code);
-            printf(" Subject %d Name: %s\n",SubjectCount,Subjects[j].Name);
-        }
-    }
-
-    return StudentFoundIndex;
-}
-
-*/
-int Search_Student(char StudentRollNumber[12])
-{
-    int StudentFoundIndex = -1;
-
-
-     for(int i = 0; i < TotalNumberOfStudents; i++)
-    {
-        if(strcmp(StudentRollNumber,Students[i].RollNumber) == 0)
-        {
-            StudentFoundIndex = i;
-            printf("\n Student with RollNumber '%s' Found \n\n",StudentRollNumber);
+            printf("\n Student with RollNumber '%s' Found \n\n", StudentRollNumber);
             printf("+---------------------------------------------+\n");
             printf("|           STUDENT INFORMATION               |\n");
             printf("+---------------------------------------------+\n");
@@ -495,24 +455,26 @@ int Search_Student(char StudentRollNumber[12])
             printf("| Email       : %-30s|\n", Students[i].Email);
             printf("| Phone       : %-30s|\n", Students[i].Phone);
             printf("+---------------------------------------------+\n");
-        }
-    }   
 
-    
-
+            // Print subjects only if the student is found
             printf("|                 SUBJECTS                    |\n");
             printf("+---------------------------------------------+\n");
             printf("| Count          CODE            SUBJECT      |\n");
             printf("|---------------------------------------------|\n");
 
-    int SubjectCount = 0;
-    for (int j = 0; j < TotalSubjects; j++)
-    {
-        if (strcmp(StudentRollNumber, Subjects[j].StudentRollNumber) == 0)
-        {
-            SubjectCount++;
-            printf("|  %-5d         %-8s        %-13s|\n", SubjectCount, Subjects[j].Code, Subjects[j].Name);
-            printf("|---------------------------------------------|\n");
+            int SubjectCount = 0;
+            for (int j = 0; j < TotalSubjects; j++) 
+            {
+                if (strcmp(StudentRollNumber, Subjects[j].StudentRollNumber) == 0) 
+                {
+                    SubjectCount++;
+                    printf("|  %-5d         %-8s        %-13s|\n", SubjectCount, Subjects[j].Code, Subjects[j].Name);
+                    printf("|---------------------------------------------|\n");
+                }
+            }
+
+            // Exit the loop since the student is found
+            break;
         }
     }
 
