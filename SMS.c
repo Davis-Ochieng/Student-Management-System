@@ -494,7 +494,7 @@ int Search_Student(char StudentRollNumber[12]) {
 
 void Edit_Student(int StudentFoundIndex)
 {
-    printf("\n\t\t ___ Update The New Student ****\n\n");
+    printf("\n\t\t ___ Update The New Student ___\n\n");
 
     char NewName[300];
     char NewPhone[300];
