@@ -486,7 +486,7 @@ int Search_Student(char StudentRollNumber[12])
         if(strcmp(StudentRollNumber,Students[i].RollNumber) == 0)
         {
             StudentFoundIndex = i;
-            printf("\n One Student Found for RollNumber: %s\n\n",StudentRollNumber);
+            printf("\n Student with RollNumber '%s' Found \n\n",StudentRollNumber);
             printf("+----------------------------------------+\n");
             printf("|\t         STUDENT INFORMATION          |\n");
             printf("+----------------------------------------+\n");
@@ -497,11 +497,12 @@ int Search_Student(char StudentRollNumber[12])
             printf("+--------------------------------------+\n");
         }
     }   
+
     
 
             printf("|\t               SUBJECTS               |\n");
             printf("+-----------------------------------------+\n");
-            printf("|Count \t     CODE\t         SUBJECT      |\n");
+            printf("|Count\t     CODE\t         SUBJECT      |\n");
             printf("|-----------------------------------------|\n");
 
     int SubjectCount = 0;
