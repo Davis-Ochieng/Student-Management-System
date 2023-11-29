@@ -72,10 +72,11 @@ void Menu();
 void Add_New_Student();
 void Show_All_Students();
 int  Search_Student(char StudentRollNumber[12]);
+
 void Edit_Student(int StudentFoundIndex);
 void Delete_Student(int IndexOfStudent);
 void Delete_All_Students();
-int  Already_Exis(char LineChecking[30],char informationType, char StudentRollNumber[300]);
+int  Already_Exist(char LineChecking[30],char informationType, char StudentRollNumber[300]);
 void Delete_Subject_by_Index(int SubjectIndex);
 void Delete_Student_by_Index(int SubjectIndex);
 void GoBack_or_Exit();
@@ -115,10 +116,10 @@ int main()
         {
             system("clear");
             printf("\n\t\t **** Search Students ****\n\n");
-            printf(" Enter The Student ID: ");
+            printf(" Enter The Student RollNumber: ");
             scanf("%s",StudentRollNumber);
             int IsFound = Search_Student(StudentRollNumber);
-            if(IsFound<0)
+            if(IsFound < 0)
             {
                 printf(" No Student Found\n\n");
             }
@@ -129,24 +130,25 @@ int main()
         case 4:
             system("clear");
             printf("\n\t\t **** Edit a Student ****\n\n");
-            printf(" Enter The Student ID: ");
+            printf(" Enter The Student RollNumber: ");
             scanf("%s",StudentRollNumber);
             int StudentFoundIndex = Search_Student(StudentRollNumber);
 
-            if(StudentFoundIndex>=0)
+            if(StudentFoundIndex >= 0)
             {
                 Edit_Student(StudentFoundIndex);
             }
-            else
+            else 
             {
                 printf(" No Student Found\n\n");
             }
             GoBack_or_Exit();
             break;
+
         case 5:
             system("clear");
             printf("\n\t\t **** Delete a Student ****\n\n");
-            printf(" Enter The Student ID: ");
+            printf(" Enter The Student RollNumber: ");
             scanf("%s",StudentRollNumber);
 
             int DeleteStudentFoundIndex = Search_Student(StudentRollNumber);
@@ -240,29 +242,30 @@ void Add_New_Student()
     char SubjectCode[300];
     char SubjectName[300];
 
-    int IsValidID = 0;
-    while(!IsValidID)
+    int IsValidRollNumber = 0;
+    while(!IsValidRollNumber)
     {
-        printf(" Enter The ID: ");
+        printf(" Enter The RollNumber: ");
         scanf("%s", StudentRollNumber);
-        if(Already_Exis(StudentRollNumber,'i',StudentRollNumber) > 0)
+
+        if(Already_Exist(StudentRollNumber,'i',StudentRollNumber) > 0)
         {
             printf(" Error: This RollNumber is already exists.\n\n");
-            IsValidID = 0;
+            IsValidRollNumber = 0;
         }
         else if(strlen(StudentRollNumber) > 12)
         {
             printf(" Error: RollNumber can not be more than 12 characters.\n\n");
-            IsValidID = 0;
+            IsValidRollNumber = 0;
         }
         else if(strlen(StudentRollNumber) <= 0)
         {
             printf(" Error: RollNumber can not be empty.\n\n");
-            IsValidID = 0;
+            IsValidRollNumber = 0;
         }
         else
         {
-            IsValidID = 1;
+            IsValidRollNumber = 1;
         }
     }
 
@@ -271,6 +274,7 @@ void Add_New_Student()
     {
         printf(" Enter The Name: ");
         scanf(" %[^\n]s", Name);
+
         if(strlen(Name) > 20)
         {
             printf(" Error: Name can not be more than 20 characters.\n\n");
@@ -292,7 +296,8 @@ void Add_New_Student()
     {
         printf(" Enter The Email: ");
         scanf("%s", Email);
-        if(Already_Exis(Email,'e',StudentRollNumber) > 0)
+
+        if(Already_Exist(Email,'e',StudentRollNumber) > 0)
         {
             printf(" This Email is Already Exists.\n");
             IsValidEmail = 0;
@@ -318,7 +323,8 @@ void Add_New_Student()
     {
         printf(" Enter The Phone: ");
         scanf("%s",Phone);
-        if(Already_Exis(Phone,'p',StudentRollNumber) > 0)
+
+        if(Already_Exist(Phone,'p',StudentRollNumber) > 0)
         {
             printf(" This Phone Number is Already Exists\n");
             IsValidPhone = 0;
@@ -344,6 +350,7 @@ void Add_New_Student()
     {
         printf(" Number of Subjects: ");
         scanf("%d",&NumberOfSubjects);
+
         if(NumberOfSubjects <= 0 || NumberOfSubjects > 4)
         {
             printf(" Error: Number of Subjects can not be more than 4 and lees than 1.\n\n");
@@ -362,7 +369,7 @@ void Add_New_Student()
     Students[TotalNumberOfStudents].NumberOfSubject = NumberOfSubjects;
     TotalNumberOfStudents++;
 
-    for(i=0; i<NumberOfSubjects; i++)
+    for(i = 0; i < NumberOfSubjects; i++)
     {
 
         printf(" Enter Subject %d Code: ",i+1);
@@ -374,6 +381,7 @@ void Add_New_Student()
         strcpy(Subjects[TotalSubjects].StudentRollNumber,StudentRollNumber);
         strcpy(Subjects[TotalSubjects].Code,SubjectCode);
         strcpy(Subjects[TotalSubjects].Name,SubjectName);
+
         TotalSubjects++;
     }
 
@@ -394,24 +402,28 @@ void Show_All_Students()
         {
             printf(" ");
         }
+
         printf("| ");
         printf("%s",Students[i].Name);
         for(j=0; j < (20-strlen(Students[i].Name)); j++)
         {
             printf(" ");
         }
+
         printf("| ");
         printf("%s",Students[i].Email);
         for(j=0; j < (30-strlen(Students[i].Email)); j++)
         {
             printf(" ");
         }
+
         printf("| ");
         printf("%s",Students[i].Phone);
         for(j=0; j < (20-strlen(Students[i].Phone)); j++)
         {
             printf(" ");
         }
+
         printf("| ");
         printf("%d",Students[i].NumberOfSubject);
         for(j=0; j < 12; j++)
@@ -425,22 +437,23 @@ void Show_All_Students()
     printf("\n");
 }
 
+/*
 int Search_Student(char StudentRollNumber[12])
 {
-    system("clear");
+    //system("clear");
     int StudentFoundIndex = -1;
 
-    int i;
-    for(i=0; i<TotalNumberOfStudents; i++)
+
+    for(int i = 0; i < TotalNumberOfStudents; i++)
     {
         if(strcmp(StudentRollNumber,Students[i].RollNumber) == 0)
         {
             StudentFoundIndex = i;
-            printf("\n One Student Found for ID: %s\n\n",StudentRollNumber);
+            printf("\n One Student Found for RollNumber: %s\n\n",StudentRollNumber);
             printf(" Student Informations\n");
             printf("-------------------------\n");
 
-            printf(" ID:    %s\n",Students[i].RollNumber);
+            printf(" RollNumber:    %s\n",Students[i].RollNumber);
             printf(" Name:  %s\n",Students[i].Name);
             printf(" Email: %s\n",Students[i].Email);
             printf(" Phone: %s\n",Students[i].Phone);
@@ -448,8 +461,8 @@ int Search_Student(char StudentRollNumber[12])
         }
     }
     int SubjectCount = 0;
-    int j;
-    for(j=0; j<TotalSubjects; j++)
+    
+    for(int j = 0; j < TotalSubjects; j++)
     {
         if(strcmp(StudentRollNumber,Subjects[j].StudentRollNumber) == 0)
         {
@@ -461,6 +474,53 @@ int Search_Student(char StudentRollNumber[12])
 
     return StudentFoundIndex;
 }
+
+*/
+int Search_Student(char StudentRollNumber[12])
+{
+    int StudentFoundIndex = -1;
+
+
+     for(int i = 0; i < TotalNumberOfStudents; i++)
+    {
+        if(strcmp(StudentRollNumber,Students[i].RollNumber) == 0)
+        {
+            StudentFoundIndex = i;
+            printf("\n One Student Found for RollNumber: %s\n\n",StudentRollNumber);
+            printf("+----------------------------------------+\n");
+            printf("|\t         STUDENT INFORMATION          |\n");
+            printf("+----------------------------------------+\n");
+            printf("| Roll Number : %-30s|\n", Students[i].RollNumber);
+            printf("| Name        : %-30s|\n", Students[i].Name);
+            printf("| Email       : %-30s|\n", Students[i].Email);
+            printf("| Phone       : %-30s|\n", Students[i].Phone);
+            printf("+--------------------------------------+\n");
+        }
+    }   
+    
+
+            printf("|\t               SUBJECTS               |\n");
+            printf("+-----------------------------------------+\n");
+            printf("|Count \t     CODE\t         SUBJECT      |\n");
+            printf("|-----------------------------------------|\n");
+
+    int SubjectCount = 0;
+    for (int j = 0; j < TotalSubjects; j++)
+    {
+        if (strcmp(StudentRollNumber, Subjects[j].StudentRollNumber) == 0)
+        {
+            SubjectCount++;
+            printf("| %-6d\t    %-8s     %-14s|\n", SubjectCount, Subjects[j].Code, Subjects[j].Name);
+            printf("|--------------------------------------|\n");
+        }
+    }
+}
+
+
+
+
+
+
 
 void Edit_Student(int StudentFoundIndex)
 {
@@ -511,7 +571,7 @@ void Edit_Student(int StudentFoundIndex)
             printf(" Error: Email can not be empty.\n\n");
             IsValidEmail = 0;
         }
-        else if(Already_Exis(NewEmail,'e',StudentRollNumber) > 0)
+        else if(Already_Exist(NewEmail,'e',StudentRollNumber) > 0)
         {
             printf(" Error: This Email Already Exists.\n\n");
             IsValidEmail = 0;
@@ -538,7 +598,7 @@ void Edit_Student(int StudentFoundIndex)
             printf(" Error: Phone can not be empty.\n\n");
             IsValidPhone = 0;
         }
-        else if(Already_Exis(NewPhone,'p',StudentRollNumber) > 0)
+        else if(Already_Exist(NewPhone,'p',StudentRollNumber) > 0)
         {
             printf(" Error: This Phone Number is Already Exists.\n\n");
             IsValidPhone = 0;
@@ -589,7 +649,7 @@ void Edit_Student(int StudentFoundIndex)
 
         int FirstSubjectIndex;
         int dc;
-        for(dc=0; dc<TotalSubjects; dc++)
+        for(dc = 0; dc < TotalSubjects; dc++)
         {
             if(strcmp(StudentRollNumber,Subjects[dc].StudentRollNumber) == 0)
             {
@@ -600,14 +660,14 @@ void Edit_Student(int StudentFoundIndex)
         // after every delete array index will update (decrease by one)
         // we store the Subjects sequential
         // so if we know the first Subject index and total number of Subject we can delete all
-        for(dc=1; dc<=OldTotalSubjects; dc++)
+        for(dc = 1; dc <= OldTotalSubjects; dc++)
         {
             Delete_Subject_by_Index(FirstSubjectIndex);
         }
 
         char SubjectCode[300];
         char SubjectName[300];
-        for(i=1; i<=NewNumberOfSubjects; i++)
+        for(i = 1; i <= NewNumberOfSubjects; i++)
         {
             printf(" Enter New Subject %d Code: ",i);
             scanf("%s",SubjectCode);
@@ -660,10 +720,10 @@ void Delete_All_Students()
 
 void Delete_Subject_by_Index(int SubjectIndex)
 {
-    int c;
-    for(c=0; c<TotalSubjects-1; c++)
+
+    for(int c = 0; c < TotalSubjects-1; c++)
     {
-        if(c>=SubjectIndex)
+        if(c >= SubjectIndex)
         {
             Subjects[c] = Subjects[c+1];
         }
@@ -675,9 +735,9 @@ void Delete_Subject_by_Index(int SubjectIndex)
 void Delete_Student_by_Index(int SubjectIndex)
 {
     int s;
-    for(s=0; s<TotalNumberOfStudents-1; s++)
+    for(s = 0; s < TotalNumberOfStudents-1; s++)
     {
-        if(s>=SubjectIndex)
+        if(s >= SubjectIndex)
         {
             Students[s] = Students[s+1];
         }
@@ -686,14 +746,14 @@ void Delete_Student_by_Index(int SubjectIndex)
 }
 
 
-int Already_Exis(char LineChecking[300],char informationType, char StudentRollNumber[300])
+int Already_Exist(char LineChecking[300],char informationType, char StudentRollNumber[300])
 {
     int EmailExists = 0;
     int PhoneExists = 0;
     int RollNumberExists = 0;
     int ep;
 
-    for(ep=0; ep<TotalNumberOfStudents; ep++)
+    for(ep=0; ep < TotalNumberOfStudents; ep++)
     {
         if(strcmp(LineChecking,Students[ep].RollNumber) == 0)
         {
@@ -806,3 +866,35 @@ void Sample_Data()
     TotalNumberOfStudents = 3;
     TotalSubjects = 6;
 }
+
+
+
+
+
+
+
+
+
+
+/*
+
++==============================+
+|     STUDENT INFORMATION      |
++==============================+
+| Roll Number : Stdnt_1        |
+| Name  : John Paul            |
+| Email : JohnPaul@gmail.com   |
+| Phone : (+254) 712-345-671   |
++==============================+
+|          SUBJECTS            |
++==============================+
+|Count   CODE      SUBJECT     |
+|------------------------------|
+| 1      CSE-1     Subject - 1 |
+|------------------------------|
+| 2      CSE-2     Subject - 2 |
+|------------------------------|
+
+
+
+*/
