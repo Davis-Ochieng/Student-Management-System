@@ -213,17 +213,20 @@ int main()
 
 void Menu()
 {
-    printf("\n\t--- Student Management System Using C ---\n\n");
-    printf("\t=========================\n");
-    printf("\t 1. Add A New student.\n");
-    printf("\t 2. Show All students.\n");
-    printf("\t 3. Search A student.\n");
-    printf("\t 4. Edit A student.\n");
-    printf("\t 5. Delete A student.\n");
-    printf("\t 6. Delete All students.\n");
-    printf("\t 7. Clear The window.\n");
-    printf("\t 0. Exit the Program.\n");
-    printf("\t========================\n");
+    printf("\t +-----------------------------------+\n");
+    printf("\t |     STUDENT MANAGEMENT SYSTEM     |\n");
+    printf("\t +-----------------------------------+\n\n");
+
+    printf("\t ====================================\n");
+    printf("\t    [ 1 ]. Add A New student.  \n");
+    printf("\t    [ 2 ]. Show All students.  \n");
+    printf("\t    [ 3 ]. Search A student.   \n");
+    printf("\t    [ 4 ]. Edit A student.     \n");
+    printf("\t    [ 5 ]. Delete A student.   \n");
+    printf("\t    [ 6 ]. Delete All students. \n");
+    printf("\t    [ 7 ]. Clear The window.   \n");
+    printf("\t    [ 0 ]. Exit the Program.   \n");
+    printf("\t ====================================\n");
     printf("\tEnter a Choice from the above Selections : ");
 } 
 
@@ -379,44 +382,44 @@ void Add_New_Student()
 
 void Show_All_Students()
 {
-    printf("|============|====================|==============================|====================|=============|\n");
-    printf("| RollNumber |        Name        |            Email             |       Phone        |  NO.Subject |\n");
-    printf("|============|====================|==============================|====================|=============|\n");
+    printf("|=============|=====================|===============================|=====================|==============|\n");
+    printf("| RollNumber2 |        Name         |            Email              |       Phone         |   NO.Subject |\n");
+    printf("|=============|=====================|===============================|=====================|==============|\n");
 
-    for(i=0; i<TotalNumberOfStudents; i++)
+    for(i = 0; i < TotalNumberOfStudents; i++)
     {
-        printf("|");
+        printf("| ");
         printf("%s",Students[i].RollNumber);
         for(j=0; j < (12-strlen(Students[i].RollNumber)); j++)
         {
             printf(" ");
         }
-        printf("|");
+        printf("| ");
         printf("%s",Students[i].Name);
         for(j=0; j < (20-strlen(Students[i].Name)); j++)
         {
             printf(" ");
         }
-        printf("|");
+        printf("| ");
         printf("%s",Students[i].Email);
         for(j=0; j < (30-strlen(Students[i].Email)); j++)
         {
             printf(" ");
         }
-        printf("|");
+        printf("| ");
         printf("%s",Students[i].Phone);
         for(j=0; j < (20-strlen(Students[i].Phone)); j++)
         {
             printf(" ");
         }
-        printf("|");
+        printf("| ");
         printf("%d",Students[i].NumberOfSubject);
         for(j=0; j < 12; j++)
         {
             printf(" ");
         }
         printf("|\n");
-        printf("|------------|--------------------|------------------------------|--------------------|-------------|\n");
+        printf("|-------------|---------------------|-------------------------------|---------------------|--------------|\n");
 
     }
     printf("\n");
